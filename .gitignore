@@ -46,4 +46,4 @@ testem.log
 Thumbs.db
 
 # secret keys
-/src/app/shared/app-settings.ts 
+app-settings.ts 
