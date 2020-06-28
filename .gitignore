@@ -47,3 +47,8 @@ Thumbs.db
 
 # secret keys
 app-settings.ts 
+
+#deployment
+/.firebase
+.firebaserc
+firebase.json
