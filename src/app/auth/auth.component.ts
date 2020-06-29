@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { AuthService, AuthResponseData } from './auth.service';
+import { DataStoreService } from '../shared/data-store.service';
 
 @Component({
     selector: 'app-auth',
@@ -15,7 +16,7 @@ export class AuthComponent {
     error = null;
     isLoading = false;
 
-    constructor(private authService: AuthService, private router:Router) { }
+    constructor(private authService: AuthService, private router:Router, private dataService: DataStoreService) { }
 
     onSwitchMode() {
         this.isLoginMode = !this.isLoginMode;
@@ -37,6 +38,7 @@ export class AuthComponent {
         authObs.subscribe(responseData => {
             this.isLoading = false;
             this.router.navigate(['/recipes']);
+            this.dataService.fetchRecipes().subscribe();
         }, errorMessage => {
             this.isLoading = false;
             this.error = errorMessage;
