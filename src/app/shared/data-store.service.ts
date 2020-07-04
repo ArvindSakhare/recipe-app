@@ -12,14 +12,14 @@ export class DataStoreService {
 
     storeRecipes() {
         const recipes = this.recipeService.getRecipes();
-        this.http.put("https://angular-recipes-5c5df.firebaseio.com/recipe.json", recipes)
+        this.http.put("https://angular-recipes-5c5df.firebaseio.com/recipe.json"
+        , recipes)
             .subscribe(response => {
                 console.log(response);
             });
     }
 
     fetchRecipes() {
-
         return this.http.get<Recipe[]>(
             "https://angular-recipes-5c5df.firebaseio.com/recipe.json"
         ).pipe(
