@@ -5,7 +5,6 @@ import { map, tap, take, exhaustMap } from 'rxjs/operators'
 import { Recipe } from '../recipes/recipe.model';
 import { RecipeService } from '../recipes/recipe.service';
 import { AuthService } from '../auth/auth.service';
-import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class DataStoreService {
@@ -13,7 +12,7 @@ export class DataStoreService {
 
     storeRecipes() {
         const recipes = this.recipeService.getRecipes();
-        this.http.put("https://angular-recipes-5c5df.firebaseio.com/recipe.json?key="+ process.env.FIREBASE_API_KEY
+        this.http.put("https://angular-recipes-5c5df.firebaseio.com/recipe.json"
         , recipes)
             .subscribe(response => {
                 console.log(response);
@@ -22,7 +21,7 @@ export class DataStoreService {
 
     fetchRecipes() {
         return this.http.get<Recipe[]>(
-            "https://angular-recipes-5c5df.firebaseio.com/recipe.json?key="+ process.env.FIREBASE_API_KEY
+            "https://angular-recipes-5c5df.firebaseio.com/recipe.json"
         ).pipe(
             map(recipes => {
                 return recipes.map(recipes => {
