@@ -3,7 +3,6 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-
 import { User } from './user.model';
 import { Router } from '@angular/router';
 
