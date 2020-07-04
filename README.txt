@@ -5,6 +5,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 This project is hosted on firebase. 
 url : https://angular-recipes-5c5df.web.app
 
+## Documentation
+Please find the compdoc documentation on :https://arvindsakhare.github.io/recipe-app/index.html
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
