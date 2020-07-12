@@ -1,33 +1,18 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
+import { Store } from '@ngrx/store';
+
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shared/ingredient.model';
-import { ShoppingListService } from '../shopping-list/shopping-list.service';
-import { Subject } from 'rxjs';
-
+import * as ShoppingListActions from '../shopping-list/store/shopping-list.actions';
+import * as fromShoppingList from '../shopping-list/store/shopping-list.reducer'
 
 @Injectable()
 export class RecipeService{
     recipeChanged = new Subject<Recipe[]>();
     recipes: Recipe[] = [];
-    // recipes: Recipe[] = [
-    //     new Recipe('A Pizza', 
-    //     'This is Pizza recipe', 
-    //     'https://www.biggerbolderbaking.com/wp-content/uploads/2019/07/15-Minute-Pizza-WS-Thumbnail.png',
-    //      [
-    //          new Ingredient('Beans', 10),
-    //          new Ingredient('Cheese', 2)
-    //      ]   
-    //     ),
-    //     new Recipe('A Big Fat Burger', 
-    //     'This is A Big Fat Burger  recipe', 
-    //     'https://media1.s-nbcnews.com/j/newscms/2019_21/2870431/190524-classic-american-cheeseburger-ew-207p_d9270c5c545b30ea094084c7f2342eb4.fit-760w.jpg',
-    //     [
-    //         new Ingredient('Buns', 5),
-    //         new Ingredient('French fries', 20)
-    //     ]    
-    //     )];
-
-    constructor(private slService: ShoppingListService){}
+    
+    constructor(private store: Store<fromShoppingList.AppState>) {}
 
     setRecipes(recipes: Recipe[]){
         this.recipes = recipes;
@@ -58,6 +43,6 @@ export class RecipeService{
     }
 
     addIngredientsToShoppingList(ingredients: Ingredient[]){
-        this.slService.addIngredients(ingredients);
+       this.store.dispatch(new ShoppingListActions.AddIngredients(ingredients));
     }
 }
